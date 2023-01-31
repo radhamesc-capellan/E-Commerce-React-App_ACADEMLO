@@ -3,9 +3,13 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import logo from "../assets/rad_vector.png";
 import { FaHome , FaUserAlt, FaShoppingCart } from 'react-icons/fa'
 import { BiPurchaseTag } from 'react-icons/bi'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const NavBarApp = () => {
 
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.setItem('token', '')
+  }
   
   return (
     <>
@@ -25,9 +29,11 @@ const NavBarApp = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="justify-content-end flex-grow-1 pe-3">
               <Nav.Link as={Link} to='/'><FaHome/> <span> Home </span> </Nav.Link>
+              {/* <div>{ conditional render button}</div> */}
               <Nav.Link as={Link} to='/login'><FaUserAlt/><span> Login </span></Nav.Link>
               <Nav.Link as={Link} to='/purchases'><BiPurchaseTag/> <span> Purchases </span> </Nav.Link>
               <Nav.Link><FaShoppingCart/> <span> Cart </span> </Nav.Link>
+              <Nav.Link onClick={logout}> LogOut</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

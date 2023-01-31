@@ -41,7 +41,7 @@ const ProductsList = () => {
       {/* category sidebar */}
       <Row>
         <Col lg={3}>
-          <Accordion defaultActiveKey={["0"]} alwaysOpen >
+          <Accordion defaultActiveKey={["0"]} alwaysOpen>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Categories</Accordion.Header>
               <Accordion.Body>
@@ -49,7 +49,7 @@ const ProductsList = () => {
                   {productsCategories.map((productsCategories) => (
                     <ListGroup.Item
                       key={productsCategories.id}
-                      style={{ cursor:'pointer' }}
+                      style={{ cursor: "pointer" }}
                       onClick={() =>
                         dispatch(
                           filterProductCategorieThunk(productsCategories.id)
@@ -97,24 +97,31 @@ const ProductsList = () => {
           <Row xs={1} md={2} lg={3} className="g-4">
             {productsList.map((productsList) => (
               <Col key={productsList.id}>
-                <Card
+                <Card className="container"
                   onClick={() => navigate(`/product/${productsList.id}`)}
                   style={{ width: "18rem", cursor: "pointer" }}
                 >
                   <Card.Img
                     variant="top"
                     src={productsList.images[0].url}
-                    style={{height:200, objectFit:'contain'}}
+                    style={{ height: 200, objectFit: "contain" }}
                     alt="productsImages"
                   />
                   <Card.Body>
                     <small className="text-muted">{productsList.brand}</small>
                     <Card.Title>{productsList.title}</Card.Title>
-                    <small className="text-muted">Price</small>
-                    <Card.Text> $ {productsList.price}</Card.Text>
-                    <Button variant="primary">
-                      <ImCart />
-                    </Button>
+                    
+                    <Row>
+                      <Col>
+                      <small className="text-muted">Price</small>
+                        <Card.Text> $ {productsList.price}</Card.Text>
+                      </Col>
+                      <Col className="col align-self-end">
+                        <Button variant="primary" >
+                          <ImCart />
+                        </Button>
+                      </Col>
+                    </Row>
                   </Card.Body>
                 </Card>
               </Col>

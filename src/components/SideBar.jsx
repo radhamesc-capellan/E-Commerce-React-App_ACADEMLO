@@ -1,41 +1,40 @@
-import React, { useState } from 'react'
-import { Button, Offcanvas } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
+import { Button, Offcanvas } from "react-bootstrap";
+import { FaShoppingCart } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductsCartThunk } from "../store/slices/productCart.slice";
 
-const SideBar = (name, ...props ) => {
+const SideBar = ({ show, handleClose }) => {
+  const productsCart = useSelector((state) => state.productsCart);
+  const dispatch = useDispatch();
 
-  const [show, setShow] = useState(false);
+  useEffect(() => {
+    dispatch(getProductsCartThunk());
+  }, []);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  console.log(productsCart);
 
   return (
     <>
-    <Button variant="primary" onClick={handleShow} className="me-2">
-      {name}
-    </Button>
-    <Offcanvas show={show} onHide={handleClose} {...props}>
-      <Offcanvas.Header closeButton>
-        <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-      </Offcanvas.Header>
-      <Offcanvas.Body>
-        Some text as placeholder. In real life you can have the elements you
-        have chosen. Like, text, images, lists, etc.
-      </Offcanvas.Body>
-    </Offcanvas>
-  </>
-);
-}
+      <Offcanvas show={show} onHide={handleClose} placement="end">
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>
+            <FaShoppingCart /> <span> Cart </span>
+          </Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          {productsCart.map((productCart) => (
+            <div key={productCart.id}>
+              <img src={productCart.product.images[0].url} />
 
-function Example() {
-return (
-  <>
-    {['start', 'end', 'top', 'bottom'].map((placement, idx) => (
-      <OffCanvasExample key={idx} placement={placement} name={placement} />
-    ))}
-  </>
-);
-}
+              {productCart.product.title}
+              {productCart.product.quantity}
+            </div>
+          ))}
+        </Offcanvas.Body>
+      </Offcanvas>
+    </>
+  );
+};
 
-
-
-export default SideBar
+export default SideBar;

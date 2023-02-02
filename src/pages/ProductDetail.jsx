@@ -25,6 +25,11 @@ const ProductDetail = () => {
       });
   }, [id]);
 
+  const [rate, setRate] = useState('');
+  const addToCart = () => {
+    alert(rate)
+  }
+
   console.log(productDetail);
 
   return (

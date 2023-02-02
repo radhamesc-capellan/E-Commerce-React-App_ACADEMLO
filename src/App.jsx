@@ -30,6 +30,7 @@ function App() {
 
             <Route element={<ProtectedRoutes />}>
               <Route path="/purchases" element={<Purchases/>} />
+              {/* <Route path="/cart" element={<Cart/>} /> */}
             </Route>
           </Routes>
         </Container>

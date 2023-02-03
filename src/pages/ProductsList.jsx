@@ -116,7 +116,7 @@ const ProductsList = () => {
                       <small className="text-muted">Price</small>
                         <Card.Text> $ {productsList.price}</Card.Text>
                       </Col>
-                      <Col className="col align-self-end">
+                      <Col className="mt-4">
                         <Button variant="primary" >
                           <ImCart />
                         </Button>

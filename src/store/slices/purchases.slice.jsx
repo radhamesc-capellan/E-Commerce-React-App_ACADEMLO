@@ -26,6 +26,16 @@ export const getPurchasesThunk = () => (dispatch) => {
     .finally(() => dispatch(setIsLoading(false)));
 };
 
+// export const purchaseCartThunk = (productDetail) => (dispatch) => {
+//   dispatch(setIsLoading(true));
+//   return axios
+//     .post(
+//       "https://e-commerce-api-v2.academlo.tech/api/v1/purchases", productDetail, getConfig())
+//     .then((res) => dispatch(getPurchasesThunk()))
+//     .catch(() => alert('Hubo un error'))
+//     .finally(() => dispatch(setIsLoading(false)));
+// };
+
 export const { setPurchases } = purchasesSlice.actions;
 
 export default purchasesSlice.reducer;

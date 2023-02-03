@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import purchasesSlice, {
+import  {
   getPurchasesThunk,
 } from "../store/slices/purchases.slice";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import './purchases.css'
 
 const Purchases = () => {
   const purchases = useSelector((state) => state.purchases);
@@ -16,28 +17,29 @@ const Purchases = () => {
 
   return (
     <>
-      <h1>Purchases</h1>
+      <h3 className="mb-5">My Purchases</h3>
 
-      <div>
+      <div className="container">
         <ul>
           {purchases.map((purchase) => (
             <li key={purchase.id} className="mb-2">
-              <Link to={`/product/${purchase.product.id}`}>
+              <Link to={`/product/${purchase.product.id}`} className="text-link">
                 <Row>
                   <Col>
                     <img
                       src={purchase.product.images[0].url}
                       alt=""
-                      className="img-thumbnail"
+                      style={{width: 80 }}
+                      
                     />
                   </Col>
-                  <Col>
+                  <Col className="my-5">
                     <span>{purchase.product.title}</span>{" "}
                   </Col>
-                  <Col>
+                  <Col className="my-5 text-center">
                     <span>{purchase.quantity}</span>
                   </Col>
-                  <Col>
+                  <Col className="my-5 ">
                     <span>
                       <b>$ {purchase.product.price}</b>
                     </span>
